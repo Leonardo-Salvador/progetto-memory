@@ -37,7 +37,7 @@ function Uncover(nome) {
 // La funzione Uncover deve prendere in input la carta mappata dall'array
 // di oggetti 'Images',  e nel button onClick poi, se lo stato di quella carta 
 // (passata tramite nome o id), è TRUE; allora viene mostrata l'immagine
-// associata a quella carta. Come la scrivo???
+// associata a quella carta. Come la scrivo?
 
 //---------- altra soluzione: mappare in un nuovo array le carte scoperte
 // e cambiare lo stato delle carte di quel nuovo array. (?)
