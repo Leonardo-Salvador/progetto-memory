@@ -1,3 +1,5 @@
+import React, { useState } from "react";  
+
 // inserisco l'array di oggetti --> associo nome uguale a carte uguali o stabilisco dopo la relazione?
 const Images = [
     {id: "0", src: "🐶", nome: "cane", scoperta: false},
@@ -14,7 +16,7 @@ const Images = [
     {id: "11", src: "🐼", nome: "panda", scoperta: false},
 ]
 
-function Griglia() {
+const Griglia= () => {
     // qui dovrò mettere i valori e gli use state
 
     const [carte, setCarte] = useState(Images);
@@ -24,20 +26,48 @@ function Griglia() {
 
 
 
+function Uncover(idCliccato) {  
+    setCarte((carte.map((carta) => carta.id === idCliccato?
+    {...carta, scoperta: !carta.scoperta} : carta))
+);
+}
 
-function Uncover(nome) {  
-    const [scoperte, setScoperte] = useState(Images);
-    setScoperte((scoperte.map((carta) => carta.scoperta = true)))
 
+
+return ( 
+    <div className= "griglia">
+        {carte.map((carta) => <button key={carta.id} onClick= {() => Uncover(carta.id)}>
+            {carta.scoperta? carta.src : "🔲"}
+        </button>
+    )}
+</div> 
+
+)
 
 }
 
-}
+
+
+export default Griglia;
+
+
+
 
 // La funzione Uncover deve prendere in input la carta mappata dall'array
 // di oggetti 'Images',  e nel button onClick poi, se lo stato di quella carta 
 // (passata tramite nome o id), è TRUE; allora viene mostrata l'immagine
-// associata a quella carta. Come la scrivo?
+// associata a quella carta. Come la scrivo???
 
 //---------- altra soluzione: mappare in un nuovo array le carte scoperte
-// e cambiare lo stato delle carte di quel nuovo array. (?)
+// e cambiare lo stato delle carte di quel nuovo array. 
+
+// ???????????????????????????????????????????????????????????????????????// 
+
+//La funzione Uncover crea una copia dell'array images con map e sostituisce all'interno con lo spread ... soltanto
+// i valori boolean di 'scoperta' per le carte cliccate. 
+
+// Nel <div> il button passerà alla funzione Onclick la funzione Uncover con parametro l'id della carta specifica: 
+// per fare questo dobbiamo usare map per mappare un bottone per ogni elemento (oggetto) dell'array 'images'. 
+// In questo modo a ogni bottone corrisponde un id specifico e una carta specifica. 
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
