@@ -27,10 +27,39 @@ const Griglia= () => {
 
 
 function Uncover(idCliccato) {  
-    setCarte((carte.map((carta) => carta.id === idCliccato?
-    {...carta, scoperta: !carta.scoperta} : carta))
-);
+//     setCarte((carte.map((carta) => carta.id === idCliccato?
+//     {...carta, scoperta: !carta.scoperta} : carta))
+// );
+// }
+
+    setCarte((prevCarte) => {
+        const updateCarte = prevCarte.map((carta) => carta.id === idCliccato?
+        {...carta, scoperta: !carta.scoperta} : carta
+); 
+
+    const carteScoperte = updateCarte.filter((carta) => carta.scoperta); //conterrà max due carte perchè viene eseguito quando ne ha 2
+
+    //da qui le condizioni per eseguire il matching e l'eliminazione o la ricopertura delle carte
+    if (carteScoperte.length === 2) {
+        if (carteScoperte[0].nome === carteScoperte[1].nome) {
+            return updateCarte.filter((carta) => carta.nome !== carteScoperte[0].nome);  //restituisce un array con solo le scoperte:false
+        } else {
+                setTimeout (()  => {setCarte((prevCarte) => prevCarte.map((carta)=> carta.scoperta?
+                {...carta, scoperta: false} : carta));
+                },1000);
+            
+                // qui ho impostato il timeout altrimenti le carte matchate spariscono senza mostrare la seconda
+    
+
+        }
+        }
+    
+        return updateCarte;
+
+});
 }
+
+
 
 
 
