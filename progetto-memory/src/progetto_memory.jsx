@@ -20,17 +20,10 @@ const Griglia= () => {
     // qui dovrò mettere i valori e gli use state
 
     const [carte, setCarte] = useState(Images);
-    // const [matching, riconosciMatching] = useState([]);
-    // const [copri, ricopriCarta] = useState([]);
-    // const [rimuovi, rimuoviCarte] = useState([]);
 
 
 
 function Uncover(idCliccato) {  
-//     setCarte((carte.map((carta) => carta.id === idCliccato?
-//     {...carta, scoperta: !carta.scoperta} : carta))
-// );
-// }
 
     setCarte((prevCarte) => {
         const updateCarte = prevCarte.map((carta) => carta.id === idCliccato?
@@ -60,9 +53,6 @@ function Uncover(idCliccato) {
 }
 
 
-
-
-
 return ( 
     <div className= "griglia">
         {carte.map((carta) => <button key={carta.id} onClick= {() => Uncover(carta.id)}>
@@ -72,20 +62,18 @@ return (
 </div> 
 
 )
-
 }
-
-
 
 export default Griglia;
 
 
-
+// MANCANO CONTROLLI CHE IMPEDISCANO DI SCOPRIRE PIU DI DUE CARTE ALLA VOLTA
+// MANCA CONTROLLO CHE IMPEDISCA ALL UTENTE DI GIRARE PIU VOLTE LA STESSA CARD.
 
 // La funzione Uncover deve prendere in input la carta mappata dall'array
 // di oggetti 'Images',  e nel button onClick poi, se lo stato di quella carta 
 // (passata tramite nome o id), è TRUE; allora viene mostrata l'immagine
-// associata a quella carta. Come la scrivo???
+// associata a quella carta. 
 
 //---------- altra soluzione: mappare in un nuovo array le carte scoperte
 // e cambiare lo stato delle carte di quel nuovo array. 
