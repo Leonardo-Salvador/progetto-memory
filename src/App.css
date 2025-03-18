@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.griglia {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);  /* 4 colonne da 100px */
+  gap: 15px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+
+
