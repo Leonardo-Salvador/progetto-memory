@@ -20,11 +20,12 @@ const Griglia= () => {
     // qui dovrò mettere i valori e gli use state
 
     const [carte, setCarte] = useState(Images);
-
+    const [bloccato, setBloccato] = useState(false);
 
 
 function Uncover(idCliccato) {  
 
+    if (bloccato) return;
     setCarte((prevCarte) => {
         const updateCarte = prevCarte.map((carta) => carta.id === idCliccato?
         {...carta, scoperta: !carta.scoperta} : carta
@@ -32,14 +33,22 @@ function Uncover(idCliccato) {
 
     const carteScoperte = updateCarte.filter((carta) => carta.scoperta); //conterrà max due carte perchè viene eseguito quando ne ha 2
 
+    // const cartaSelezionata = carte.find(carta => carta.id === idCliccato);
+    // if (cartaSelezionata.scoperta) return bloccato; //--> FUNZIONE X LA CARTA SCOPERTA, NON FUNZIONA PERò
+
+
+
+
     //da qui le condizioni per eseguire il matching e l'eliminazione o la ricopertura delle carte
     if (carteScoperte.length === 2) {
+        setBloccato(true); //stoppa la funzione e controlla
         setTimeout(() => {
             if (carteScoperte[0].nome === carteScoperte[1].nome) {
                 setCarte(prev => prev.filter(carta => carta.nome !== carteScoperte[0].nome));
             } else {
                 setCarte(prev => prev.map(carta => carta.scoperta ? { ...carta, scoperta: false } : carta));
             }
+            setBloccato(false); // dopo 1 secondo (1000) è possibile di nuovo eseguire funzioni, quindi cliccare e girare carte
         }, 1000);
     
     
