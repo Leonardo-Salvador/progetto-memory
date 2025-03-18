@@ -16,10 +16,23 @@ const Images = [
   { id: "11", src: "🐼", nome: "panda", scoperta: false, rimossa:false },
 ];
 
-const Griglia = () => {
-  // qui dovrò mettere i valori e gli use state
+//Funzione per mescolare le carte, altrimenti ad ogni refresh restano al solito posto
+const randomizeCards = () => {
+  const shuffled = [...Images].map(carta => ({...carta})); //copia in modo superficiale l'array iniziale di carte 
+  // poi prosegue facendo una copia di ciascun elemento dell'array
+  for (let i = (shuffled.length - 1); i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  console.log("Carte mescolate!", shuffled[11]);
+  console.log("Carte!", Images[11]);
+  return shuffled;
+};
 
-  const [carte, setCarte] = useState(Images);
+const Griglia = () => {
+  // qui dovrò mettere i valori e gli use state 
+  const [carte, setCarte] = useState(() => randomizeCards()); //Use state prende l'output di RandomizeCards
+  console.log("Carte che dovrebbero essere mischiate!", carte[11]);
   const [bloccato, setBloccato] = useState(false);
 
   function Uncover(idCliccato) {
