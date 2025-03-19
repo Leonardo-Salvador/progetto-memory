@@ -82,7 +82,7 @@ const Griglia = () => {
         <button key={carta.id} onClick={() => Uncover(carta.id)}
         disabled= {carta.rimossa}
         style= {{visibility: carta.rimossa? "hidden" : "visible" }}>
-          {carta.scoperta ? <img src={carta.src}/> : "🔲"}
+          {carta.scoperta ? <img src={carta.src}/> : <img src= "/immagin_simpson\duff.jpg"/>}
         </button>
       ))}
     </div>
