@@ -77,19 +77,25 @@ const Griglia = () => {
   }
 
   return (
-    <div className="griglia">
-      {carte.map((carta) => (
+    
+      carte.every(carta => carta.rimossa) ? (  //questa if serve per controllare se sono state rimosse tutte le carte
+      <div className="victory-screen">
+      <img src="/immagin_simpson/vittoria.gif"/>
+      </div> 
+    ) : (
+        <div className="griglia">
+        {carte.map((carta) => (
         <button key={carta.id} onClick={() => Uncover(carta.id)}
         disabled= {carta.rimossa}
         style= {{visibility: carta.rimossa? "hidden" : "visible" }}>
           {carta.scoperta ? <img src={carta.src}/> : <img src= "/immagin_simpson\duff.jpg"/>}
         </button>
-      ))}
-    </div>
-  );
-};
-
+  ))}
+    </div> )
+);
+}
 export default Griglia;
+
 
 
 
