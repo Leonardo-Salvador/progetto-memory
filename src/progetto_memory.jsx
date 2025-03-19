@@ -2,18 +2,18 @@ import React, { useState } from "react";
 
 // inserisco l'array di oggetti --> associo nome uguale a carte uguali o stabilisco dopo la relazione?
 const Images = [
-  { id: "0", src: "🐶", nome: "cane", scoperta: false, rimossa:false },
-  { id: "1", src: "🐱", nome: "gatto", scoperta: false, rimossa:false },
-  { id: "2", src: "🐭", nome: "topo", scoperta: false, rimossa:false },
-  { id: "3", src: "🐹", nome: "criceto", scoperta: false, rimossa:false },
-  { id: "4", src: "🦊", nome: "volpe", scoperta: false, rimossa:false },
-  { id: "5", src: "🐼", nome: "panda", scoperta: false, rimossa:false },
-  { id: "6", src: "🐶", nome: "cane", scoperta: false, rimossa:false },
-  { id: "7", src: "🐱", nome: "gatto", scoperta: false, rimossa:false },
-  { id: "8", src: "🐭", nome: "topo", scoperta: false, rimossa:false },
-  { id: "9", src: "🐹", nome: "criceto", scoperta: false, rimossa:false },
-  { id: "10", src: "🦊", nome: "volpe", scoperta: false, rimossa:false },
-  { id: "11", src: "🐼", nome: "panda", scoperta: false, rimossa:false },
+  { id: "0", src: "/immagin_simpson/barney.jpg", nome: "barney", scoperta: false, rimossa:false },
+  { id: "1", src: "/immagin_simpson/barta_lisa.jpg", nome: "bart.lisa", scoperta: false, rimossa:false },
+  { id: "2", src: "/immagin_simpson/burns.jpg", nome: "mr.burns", scoperta: false, rimossa:false },
+  { id: "3", src: "/immagin_simpson/homer.jpg", nome: "homer", scoperta: false, rimossa:false },
+  { id: "4", src: "/immagin_simpson/marge.jpg", nome: "marge", scoperta: false, rimossa:false },
+  { id: "5", src: "/immagin_simpson/smithers.jpg", nome: "smithers", scoperta: false, rimossa:false },
+  { id: "6", src: "/immagin_simpson/barney.jpg", nome: "barney", scoperta: false, rimossa:false },
+  { id: "7", src: "/immagin_simpson/barta_lisa.jpg", nome: "bart.lisa", scoperta: false, rimossa:false },
+  { id: "8", src: "/immagin_simpson/burns.jpg", nome: "mr.burns", scoperta: false, rimossa:false },
+  { id: "9", src: "/immagin_simpson/homer.jpg", nome: "homer", scoperta: false, rimossa:false },
+  { id: "10", src: "/immagin_simpson/marge.jpg", nome: "marge", scoperta: false, rimossa:false },
+  { id: "11", src: "/immagin_simpson/smithers.jpg", nome: "smithers", scoperta: false, rimossa:false },
 ];
 
 //Funzione per mescolare le carte, altrimenti ad ogni refresh restano al solito posto
@@ -82,7 +82,7 @@ const Griglia = () => {
         <button key={carta.id} onClick={() => Uncover(carta.id)}
         disabled= {carta.rimossa}
         style= {{visibility: carta.rimossa? "hidden" : "visible" }}>
-          {carta.scoperta ? carta.src : "🔲"}
+          {carta.scoperta ? <img src={carta.src}/> : "🔲"}
         </button>
       ))}
     </div>
