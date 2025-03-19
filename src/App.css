@@ -67,8 +67,12 @@
   object-fit: cover;
 }
 
-.titolo h1 {
+h1 {
   color: #FFD700;
   }
 
 
+.victory-screen img{
+  width:600px;
+  height:460px;
+}

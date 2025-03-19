@@ -18,7 +18,7 @@ function App() {
         </a>
         <Griglia />
       </div>
-      <h1 className= "titolo">DRUNK SIMPSONS GAME</h1>
+      <h1>Drunk Simpsons Game</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           shot fatti {count}
