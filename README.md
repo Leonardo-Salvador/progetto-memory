@@ -1,6 +1,6 @@
 # Drunk Simpsons Memory Game
 
-![Game Screenshot](/public/immagin_simpson/duff.jpg)
+![Game Screenshot](/public/immagin_simpson/homer.jpg)
 
 ## Description
 
