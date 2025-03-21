@@ -3,10 +3,13 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #272727;
 }
 
 body {
   background-color: #272727;
+  margin: 0;
+  padding: 0;
 }
 .logo {
   height: 6em;
