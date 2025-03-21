@@ -39,6 +39,8 @@ const Griglia = () => {
 
   function Uncover(idCliccato) {
     if (bloccato) return;
+    const cartaGiaScoperta = carte.find(carta => carta.scoperta);
+    if (cartaGiaScoperta && cartaGiaScoperta.id === idCliccato) return; //controllo x non poter click 2 volte la stessa
     setCarte((prevCarte) => 
       prevCarte.map((carta) =>
         carta.id === idCliccato
@@ -46,11 +48,6 @@ const Griglia = () => {
           : carta
       ));
     }
-
-       //conterrà max due carte perchè viene eseguito quando ne ha 2
-
-      // const cartaSelezionata = carte.find(carta => carta.id === idCliccato);
-      // if (cartaSelezionata.scoperta) return bloccato; //--> FUNZIONE X LA CARTA SCOPERTA, NON FUNZIONA PERò
 
       //da qui le condizioni per eseguire il matching e l'eliminazione o la ricopertura delle carte
       
@@ -147,9 +144,6 @@ export default Griglia;
 //     la funzione timeout che così fa sì che venga eseguita la funzione e che passi un secondo 
 //     quando sono scoperte due carte. Quello è anche il tempo necessario perchè si girino di nuovo, 
 //     e così non capiterà di poterne premere tre contemporaneamente! 
-
-
-// *£* Da implementare : CONTROLLO CHE IMPEDISCA ALL UTENTE DI GIRARE PIU VOLTE LA STESSA CARD.
 
 
 
