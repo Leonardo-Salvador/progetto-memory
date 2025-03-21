@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // inserisco l'array di oggetti --> associo nome uguale a carte uguali o stabilisco dopo la relazione?
 const Images = [
@@ -34,28 +34,36 @@ const Griglia = () => {
   const [carte, setCarte] = useState(() => randomizeCards()); //Use state prende l'output di RandomizeCards
   console.log("Carte che dovrebbero essere mischiate!", carte[11]);
   const [bloccato, setBloccato] = useState(false);
+  const [contaMosse, setContaMosse] = useState(0);
+  const [coppieTrovate, setCoppieTrovate] = useState(0);
 
   function Uncover(idCliccato) {
     if (bloccato) return;
-    setCarte((prevCarte) => {
-      const updateCarte = prevCarte.map((carta) =>
+    setCarte((prevCarte) => 
+      prevCarte.map((carta) =>
         carta.id === idCliccato
           ? { ...carta, scoperta: !carta.scoperta }
           : carta
-      );
+      ));
+    }
 
-      const carteScoperte = updateCarte.filter((carta) => carta.scoperta); //conterrà max due carte perchè viene eseguito quando ne ha 2
+       //conterrà max due carte perchè viene eseguito quando ne ha 2
 
       // const cartaSelezionata = carte.find(carta => carta.id === idCliccato);
       // if (cartaSelezionata.scoperta) return bloccato; //--> FUNZIONE X LA CARTA SCOPERTA, NON FUNZIONA PERò
 
       //da qui le condizioni per eseguire il matching e l'eliminazione o la ricopertura delle carte
       
-      if (carteScoperte.length === 2) {
-        setBloccato(true); //stoppa la funzione e controlla (nota in fondo *$*)
-        setTimeout(() => {
+      useEffect (() => {
+        const carteScoperte = carte.filter((carta) => carta.scoperta);
+        if (carteScoperte.length !== 2) return;
 
+          setBloccato(true);
+          setContaMosse(prev => prev +1);
+
+          setTimeout(() => {
             if (carteScoperte[0].nome === carteScoperte[1].nome) {
+                setCoppieTrovate(prev => prev + 1);
                 setCarte((prevCarte) => prevCarte.map((carta => 
                 (carta.nome === carteScoperte[0].nome)? 
                 {...carta, rimossa: true, scoperta: false} : carta
@@ -70,12 +78,10 @@ const Griglia = () => {
           }
           setBloccato(false); // dopo 1 secondo (1000) è possibile di nuovo eseguire funzioni, quindi cliccare e girare carte
         }, 1000);
-      }
+    }, [carte]);
 
-      return updateCarte;
-    });
-  }
-
+        
+  
   return (
     
       carte.every(carta => carta.rimossa) ? (  //questa if serve per controllare se sono state rimosse tutte le carte
@@ -103,6 +109,9 @@ export default Griglia;
 
 // ULTIMI AGGIORNAMENTI !! 
 
+
+// Ho implementato useEffect che si attiva quando la var. [carte] cambia! Ora Uncover() gestisce solo la scoperta delle carte, 
+// useEffect il resto. aggiorna anche il contamosse e il coppietrovate!
 
 // Ho aggiunto funzione che mantiene la STABILITA' DELLA GRIGLIA(prima la griglia si ricomponeva
 // a piacimento ogni volta che un match avveniva). Per mantenere la stabilità ho inserito un nuovo
