@@ -87,6 +87,7 @@ const Griglia = () => {
       carte.every(carta => carta.rimossa) ? (  //questa if serve per controllare se sono state rimosse tutte le carte
       <div className="victory-screen">
         <h1>🏆 VICT🥴RY 🏆</h1>
+        <p> YOUR SCORE: {contaMosse} </p>
       <img src="/immagin_simpson/vittoria.gif"/>
       </div> 
     ) : (
