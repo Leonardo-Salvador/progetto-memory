@@ -90,6 +90,7 @@ const Griglia = () => {
       <img src="/immagin_simpson/vittoria.gif"/>
       </div> 
     ) : (
+      <div className="game-container"> 
         <div className="griglia">
         {carte.map((carta) => (
         <button key={carta.id} onClick={() => Uncover(carta.id)}
@@ -98,7 +99,13 @@ const Griglia = () => {
           {carta.scoperta ? <img src={carta.src}/> : <img src= "/immagin_simpson\duff.jpg"/>}
         </button>
   ))}
-    </div> )
+    </div> 
+    <div className="counter-container">
+        <button>Mosse: {contaMosse}</button>
+        <button>Coppie trovate: {coppieTrovate}</button>
+      </div>
+    </div>
+    )
 );
 }
 export default Griglia;
